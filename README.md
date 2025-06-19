@@ -44,7 +44,9 @@ generation.
 
 ### Generating tests from type definitions only
 
-> `pnpx test-tsx path/to/your/Type.ts`
+```sh
+pnpx test-tsx path/to/your/Type.ts
+```
 
 You can pass a file that only holds a `type` or `interface` of component props
 and generate tests to satisfy those definitions, rather than passing the whole
@@ -52,7 +54,9 @@ component. This is particularly useful for TDD.
 
 ### Shorten test names
 
-> `pnpx test-tsx path/to/your/Component.tsx --terse`
+```sh
+pnpx test-tsx path/to/your/Component.tsx --terse
+```
 
 By default, the generated tests will follow the given, when, then structure (AKA
 Gherkin). You can
@@ -62,7 +66,9 @@ shorter test names and less nested describes.
 
 ### Extra rules when generating tests
 
-> `pnpx test-tsx path/to/your/Component.tsx --extraRules "Add the filename in a comment at the top of the file,Use a props generator function rather than assigning default props to variables"`
+```
+pnpx test-tsx path/to/your/Component.tsx --extraRules "Add the filename in a comment at the top of the file,Use a props generator function rather than assigning default props to variables"
+```
 
 Extra rules will be added to the list of base rules and sent as part of the
 prompt. The string passed to the `--extraRules` flag will be split at each
