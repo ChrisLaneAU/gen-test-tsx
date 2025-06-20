@@ -9,9 +9,14 @@
   ],
   "license": "MIT",
   "author": "Chris Lane",
-  "type": "module",
+  "bin": {
+    "test-tsx": "dist/test-tsx.js"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "",
+    "build": "esbuild src/main.ts --bundle --platform=node --format=cjs --target=node22 --outfile=dist/test-tsx.js --banner:js='#!/usr/bin/env node' --external:fs --external:path --external:os && chmod +x dist/test-tsx.js",
     "dev": "tsx src/main.ts",
     "format": "eslint . --fix && prettier . --write",
     "lint": "eslint .",
@@ -37,6 +42,7 @@
     "@typescript-eslint/eslint-plugin": "^8.34.1",
     "@typescript-eslint/parser": "^8.34.1",
     "babel-jest": "^30.0.0",
+    "esbuild": "^0.25.5",
     "eslint": "^9.29.0",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-import": "^2.31.0",

@@ -5,57 +5,61 @@ import { getArgv } from './lib/getArgv';
 import { getFileContents } from './lib/getFileContents';
 import { saveGeneratedTest } from './lib/saveGeneratedTest';
 
-// Setup required variables
+const main = async () => {
+  // Setup required variables
 
-const { componentPath, extraRules, terse } = getArgv();
+  const { componentPath, extraRules, terse } = getArgv();
 
-const componentName =
-  componentPath.match(/(?:^|\/)([^\/]+?)(\..*)$/)?.[1] || componentPath;
+  const componentName =
+    componentPath.match(/(?:^|\/)([^\/]+?)(\..*)$/)?.[1] || componentPath;
 
-// Get file contents
+  // Get file contents
 
-const { error: fileContentsError, fileContents: component } =
-  await getFileContents(componentPath);
+  const { error: fileContentsError, fileContents: component } =
+    await getFileContents(componentPath);
 
-if (fileContentsError || !component) {
-  throw new Error(
-    `❌ Error getting contents of component file. Please ensure the path is correct and try again, or raise an issue in the GitHub repo. ${fileContentsError}`
-  );
-}
+  if (fileContentsError || !component) {
+    throw new Error(
+      `❌ Error getting contents of component file. Please ensure the path is correct and try again, or raise an issue in the GitHub repo. ${fileContentsError}`
+    );
+  }
 
-// Generate tests
+  // Generate tests
 
-console.info(`✨ Generating tests for the ${componentName} component`);
+  console.info(`✨ Generating tests for the ${componentName} component`);
 
-const instructions = generateInstructions({
-  component,
-  isTerse: terse,
-  extraRules: extraRules,
-});
+  const instructions = generateInstructions({
+    component,
+    isTerse: terse,
+    extraRules: extraRules,
+  });
 
-const generatedTestContent = await generateTestContent(instructions);
+  const generatedTestContent = await generateTestContent(instructions);
 
-if (!generatedTestContent) {
-  throw new Error(
-    '❌ No test content generated. Please try again or you can open an issue in the GitHub repo.'
-  );
-}
+  if (!generatedTestContent) {
+    throw new Error(
+      '❌ No test content generated. Please try again or you can open an issue in the GitHub repo.'
+    );
+  }
 
-// Save the tests
+  // Save the tests
 
-const { error, numOfTests, testPath } = await saveGeneratedTest({
-  componentPath,
-  content: generatedTestContent,
-});
+  const { error, numOfTests, testPath } = await saveGeneratedTest({
+    componentPath,
+    content: generatedTestContent,
+  });
 
-if (error || !numOfTests) {
-  throw new Error(
-    `❌ Error writing test file: ${error || '0 tests generated.'}`
-  );
-} else {
-  console.info(
-    `✅ Success! ${numOfTests} ${numOfTests === 1 ? 'test' : 'tests'} written.`
-  );
-}
+  if (error || !numOfTests) {
+    throw new Error(
+      `❌ Error writing test file: ${error || '0 tests generated.'}`
+    );
+  } else {
+    console.info(
+      `✅ Success! ${numOfTests} ${numOfTests === 1 ? 'test' : 'tests'} written.`
+    );
+  }
 
-console.info(`👀 See the test suite at ${testPath}`);
+  console.info(`👀 See the test suite at ${testPath}`);
+};
+
+main();
