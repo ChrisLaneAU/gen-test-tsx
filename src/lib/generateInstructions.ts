@@ -7,6 +7,7 @@ const baseInstructions = [
   `Ensure that every test has only one "expect" statement.`,
   `If a test has more than one assertion, create additional "test" statements for each one.`,
   `If a component accepts user input and has "value" and "onChange" props, create a test with a controlled version of the component.`,
+  `If a component renders a link, always check that the href is correctly attached to the link. Sometimes the prop may be named "url" or similar.`,
   `Always use the full accessible name when selecting elements, e.g. don't use case-insensitive regex.`,
   `Always use "screen", never destructure methods.`,
   `Don't wrap the response in triple backticks, or include the file name in a comment.`,
