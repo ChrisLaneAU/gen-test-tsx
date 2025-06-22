@@ -1,9 +1,10 @@
-# Test TSX
+# Gen Test TSX
 
-Welcome! Test TSX is a command line tool that generates unit tests for frontend
-applications using Open AI. To run this tool you will need an Open AI API key.
+Welcome! Gen Test TSX is a command line tool that generates unit tests for
+frontend applications using Open AI. To run this tool you will need an Open AI
+API key.
 
-## Generating a test
+## Generating a test suite
 
 1. Install the package:
 
@@ -17,19 +18,10 @@ pnpm add gen-test-tsx --save-dev
 OPENAI_API_KEY=<your-api-key-here>
 ```
 
-3. Create a script in your package.json:
-
-```json
-"scripts": {
-  // ...
-  "test-tsx": "pnpm gen-test-tsx"
-}
-```
-
-4. Start generating tests on the command line:
+3. Run the generator:
 
 ```sh
-pnpm test-tsx path/to/your/component.tsx
+pnpm gen-test-tsx path/to/your/component.tsx
 ```
 
 You should now have a test file generated alongside your component with the
@@ -43,7 +35,7 @@ See some of the example tests generated:
 
 - [Button component test](src/tests/components/Button.test.tsx)
 - [TextInput component test](src/tests/components/TextInput.test.tsx)
-- [TextInput test (using just the TS props type)](src/tests/types/TextInput.test.tsx)
+- [TextInput test (using just the props type definition)](src/tests/types/TextInput.test.tsx)
 
 ## Options
 
@@ -79,9 +71,9 @@ pnpx gen-test-tsx path/to/your/Component.tsx --extraRules "Add the filename in a
 ```
 
 Extra rules will be added to the list of base rules and sent as part of the
-prompt. The string passed to the `--extraRules` flag will be split at each
-comma. You can see the list of base rules in the
-[generateInstructions.ts file](/src/lib/generateInstructions.ts).
+prompt. The string passed to the `--extraRules` flag will be split at each comma
+and you can add any rules that you like. You can see the list of base rules in
+the [generateInstructions.ts file](/src/lib/generateInstructions.ts).
 
 ## Open AI API Alternative
 
