@@ -8,7 +8,7 @@ applications using Open AI. To run this tool you will need an Open AI API key.
 1. Install the package:
 
 ```sh
-pnpm add test-tsx --save-dev
+pnpm add gen-test-tsx --save-dev
 ```
 
 2. In your `.env` file, add your Open AI API key:
@@ -22,20 +22,28 @@ OPENAI_API_KEY=<your-api-key-here>
 ```json
 "scripts": {
   // ...
-  "gen-test-tsx": "pnpm test-tsx"
+  "test-tsx": "pnpm gen-test-tsx"
 }
 ```
 
 4. Start generating tests on the command line:
 
 ```sh
-pnpm gen-test-tsx path/to/your/component.tsx
+pnpm test-tsx path/to/your/component.tsx
 ```
 
-You should now have a test file generated alongside your component file that
-looks like this: `<your-component>.test.tsx`.
+You should now have a test file generated alongside your component with the
+name: `<your-component>.test.tsx`.
 
 You can run the test with `pnpx jest /path/to/your/component.test.tsx`.
+
+## Examples
+
+See some of the example tests generated:
+
+- [Button component test](src/tests/components/Button.test.tsx)
+- [TextInput component test](src/tests/components/TextInput.test.tsx)
+- [TextInput test (using just the TS props type)](src/tests/types/TextInput.test.tsx)
 
 ## Options
 
@@ -45,7 +53,7 @@ generation.
 ### Generating tests from type definitions only
 
 ```sh
-pnpx test-tsx path/to/your/Type.ts
+pnpx gen-test-tsx path/to/your/Type.ts
 ```
 
 You can pass a file that only holds a `type` or `interface` of component props
@@ -55,7 +63,7 @@ component. This is particularly useful for TDD.
 ### Shorten test names
 
 ```sh
-pnpx test-tsx path/to/your/Component.tsx --terse
+pnpx gen-test-tsx path/to/your/Component.tsx --terse
 ```
 
 By default, the generated tests will follow the given, when, then structure (AKA
@@ -67,7 +75,7 @@ shorter test names and less nested describes.
 ### Extra rules when generating tests
 
 ```
-pnpx test-tsx path/to/your/Component.tsx --extraRules "Add the filename in a comment at the top of the file,Use a props generator function rather than assigning default props to variables"
+pnpx gen-test-tsx path/to/your/Component.tsx --extraRules "Add the filename in a comment at the top of the file,Use a props generator function rather than assigning default props to variables"
 ```
 
 Extra rules will be added to the list of base rules and sent as part of the

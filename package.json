@@ -1,5 +1,5 @@
 {
-  "name": "test-tsx",
+  "name": "gen-test-tsx",
   "version": "0.0.1",
   "description": "A test generator for frontend applications, leveraging Open AI.",
   "keywords": [
@@ -10,13 +10,13 @@
   "license": "MIT",
   "author": "Chris Lane",
   "bin": {
-    "test-tsx": "dist/test-tsx.js"
+    "gen-test-tsx": "dist/gen-test-tsx.js"
   },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "esbuild src/main.ts --bundle --platform=node --format=cjs --target=node22 --outfile=dist/test-tsx.js --banner:js='#!/usr/bin/env node' --external:fs --external:path --external:os && chmod +x dist/test-tsx.js",
+    "build": "esbuild src/main.ts --bundle --platform=node --format=cjs --target=node22 --outfile=dist/gen-test-tsx.js --banner:js='#!/usr/bin/env node' --external:fs --external:path --external:os && chmod +x dist/gen-test-tsx.js",
     "dev": "tsx src/main.ts",
     "format": "eslint . --fix && prettier . --write",
     "lint": "eslint .",
