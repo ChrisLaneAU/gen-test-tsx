@@ -4,6 +4,15 @@ Welcome! Gen Test TSX is a command line tool that generates unit tests for
 frontend applications using Open AI. To run this tool you will need an Open AI
 API key.
 
+![Demo showing test generation – more details below.](https://github.com/ChrisLaneAU/gen-test-tsx/tree/main/src/assets/demo.gif)
+
+In this demo we:
+
+- Generate 9 tests in 7.87 seconds.
+- Format the code.
+- Run the new tests (all pass).
+- Spent a total of 33 seconds.
+
 ## Generating a test suite
 
 1. Install the package:
@@ -33,9 +42,9 @@ You can run the test with `pnpx jest /path/to/your/component.test.tsx`.
 
 See some of the example tests generated:
 
-- [Button component test](src/tests/components/Button.test.tsx)
-- [TextInput component test](src/tests/components/TextInput.test.tsx)
-- [TextInput test (using just the props type definition)](src/tests/types/TextInput.test.tsx)
+- [Button component test](https://github.com/ChrisLaneAU/gen-test-tsx/tree/main/src/tests/components/Button.test.tsx)
+- [TextInput component test](https://github.com/ChrisLaneAU/gen-test-tsx/tree/main/src/tests/components/TextInput.test.tsx)
+- [TextInput test (using just the props type definition)](https://github.com/ChrisLaneAU/gen-test-tsx/tree/main/src/tests/types/TextInput.test.tsx)
 
 ## Options
 
@@ -73,7 +82,8 @@ pnpx gen-test-tsx path/to/your/Component.tsx --extraRules "Add the filename in a
 Extra rules will be added to the list of base rules and sent as part of the
 prompt. The string passed to the `--extraRules` flag will be split at each comma
 and you can add any rules that you like. You can see the list of base rules in
-the [generateInstructions.ts file](/src/lib/generateInstructions.ts).
+the
+[generateInstructions.ts file](https://github.com/ChrisLaneAU/gen-test-tsx/tree/main/src/lib/generateInstructions.ts).
 
 ## Open AI API Alternative
 
@@ -81,4 +91,4 @@ If you don't want to pay for an Open AI API Key then you can just copy and paste
 the prompt that generates the test into any free LLM tool. That prompt can be
 found here:
 
-[Prompt for generating test file](/src/lib/generateInstructions.ts)
+[Prompt for generating test file](https://github.com/ChrisLaneAU/gen-test-tsx/tree/main/src/lib/generateInstructions.ts)

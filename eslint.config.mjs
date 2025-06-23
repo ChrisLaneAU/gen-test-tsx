@@ -22,7 +22,7 @@ const WARN = 1;
 const ERROR = 2;
 
 export default defineConfig([
-  globalIgnores(['.next/']),
+  globalIgnores(['.next/', 'dist']),
   {
     languageOptions: {
       parser: tsParser,

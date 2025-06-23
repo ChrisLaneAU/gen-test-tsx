@@ -10,6 +10,7 @@ const baseInstructions = [
   `If a component renders a link, always check that the href is correctly attached to the link. Sometimes the prop may be named "url" or similar.`,
   `Always use the full accessible name when selecting elements, e.g. don't use case-insensitive regex.`,
   `Always use "screen", never destructure methods.`,
+  `Don't test "htmlFor".`,
   `Don't wrap the response in triple backticks, or include the file name in a comment.`,
   `When using "React" hooks or methods, only import the named exports.`,
   `Always use full word variables, e.g. "event" and not "e".`,

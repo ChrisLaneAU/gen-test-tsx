@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import ora from 'ora';
 import { generateInstructions } from './lib/generateInstructions';
 import { generateTestContent } from './lib/generateTestContent';
 import { getArgv } from './lib/getArgv';
@@ -7,6 +8,8 @@ import { saveGeneratedTest } from './lib/saveGeneratedTest';
 
 const main = async () => {
   // Setup required variables
+
+  const spinner = ora();
 
   const { componentPath, extraRules, terse } = getArgv();
 
@@ -26,7 +29,9 @@ const main = async () => {
 
   // Generate tests
 
-  console.info(`✨ Generating tests for the ${componentName} component`);
+  spinner.start(`Generating tests for the ${componentName} component`);
+
+  const startTime = performance.now();
 
   const instructions = generateInstructions({
     component,
@@ -37,6 +42,8 @@ const main = async () => {
   const generatedTestContent = await generateTestContent(instructions);
 
   if (!generatedTestContent) {
+    spinner.stop();
+
     throw new Error(
       '❌ No test content generated. Please try again or you can open an issue in the GitHub repo.'
     );
@@ -50,12 +57,18 @@ const main = async () => {
   });
 
   if (error || !numOfTests) {
+    spinner.stop();
+
     throw new Error(
       `❌ Error writing test file: ${error || '0 tests generated.'}`
     );
   } else {
-    console.info(
-      `✅ Success! ${numOfTests} ${numOfTests === 1 ? 'test' : 'tests'} written.`
+    const endTime = performance.now();
+
+    spinner.stopAndPersist({ symbol: '✨' });
+
+    spinner.succeed(
+      ` Success! ${numOfTests} ${numOfTests === 1 ? 'test' : 'tests'} written in ${((endTime - startTime) / 1000).toFixed(2)} seconds.`
     );
   }
 
