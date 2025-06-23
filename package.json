@@ -1,6 +1,6 @@
 {
   "name": "gen-test-tsx",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A test generator for frontend applications, leveraging Open AI.",
   "keywords": [
     "AI test generator",
