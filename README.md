@@ -75,7 +75,7 @@ shorter test names and less nested describes.
 
 ### Extra rules when generating tests
 
-```
+```sh
 pnpx gen-test-tsx path/to/your/Component.tsx --extraRules "Add the filename in a comment at the top of the file,Use a props generator function rather than assigning default props to variables"
 ```
 
@@ -92,3 +92,53 @@ the prompt that generates the test into any free LLM tool. That prompt can be
 found here:
 
 [Prompt for generating test file](https://github.com/ChrisLaneAU/gen-test-tsx/tree/main/src/lib/generateInstructions.ts)
+
+## What are the instructions based on?
+
+There's a few parts to the philosophy behind the instructions.
+
+### Firstly, given-when-then has proven a useful structure (especially as it becomes familiar) because it:
+
+1. Encourages thinking about what tests need to be written – methodical
+   structure to cover off props, states and code branches.
+2. Helps understanding precisely where a test is failing – the environmental
+   context of "when" and clear expectation of "then" point right to the culprit.
+
+### Secondly, some great resources on testing:
+
+- [Testing Library Guiding Principles](https://testing-library.com/docs/guiding-principles/)
+- [Testing Library element selector priority order](https://testing-library.com/docs/queries/about#priority)
+- [Kent C. Dodds post on Common mistakes with React Testing Library](https://kentcdodds.com/blog/common-mistakes-with-react-testing-library)
+- [Implicit ARIA roles for HTML elements](https://www.w3.org/TR/html-aria/#docconformance)
+
+The most important takeaways being:
+
+> The more your tests resemble the way your software is used, the more
+> confidence they can give you.
+
+> `getByRole` ... This should be your top preference for just about everything.
+> There's not much you can't get with this (if you can't, it's possible your UI
+> is inaccessible). Most often, this will be used with the name option.
+
+> Use `@testing-library/user-event` over fireEvent where possible. [Fire] all
+> the same events the user would fire when performing a specific action.
+
+### Thirdly, some other thoughts gathered over the years:
+
+- If each test has only one assertion, then it's easier to understand and can
+  only fail at one thing, so it's easier to pinpoint bugs. Multiple tests can be
+  verbose but they provide clearer output, and with the help of AI, it's no
+  sweat to write.
+- Jest and Testing Library have been around for years and continue to progress
+  well.
+- No users find elements by `data-testid`, so this should be avoided as much as
+  possible.
+
+Of course, `gen-test-tsx` is customisable via `--extraRules` and can be adapted
+to any needs or preferences!
+
+## Why not use Cursor or Augmented?
+
+Cursor and Augmented (and friends) are great tools but not everyone has found
+success with them. Gen Test TSX allows developers to stay within familiar
+tooling (i.e. NPM scripts) and still leverage the power of AI.
