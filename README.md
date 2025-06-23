@@ -4,7 +4,7 @@ Welcome! Gen Test TSX is a command line tool that generates unit tests for
 frontend applications using Open AI. To run this tool you will need an Open AI
 API key.
 
-![Demo showing test generation – more details below.](https://github.com/ChrisLaneAU/gen-test-tsx/tree/main/src/assets/demo.gif)
+![Demo showing test generation – more details below.](https://github.com/ChrisLaneAU/gen-test-tsx/blob/main/src/assets/demo.gif?raw=true)
 
 In this demo we:
 
